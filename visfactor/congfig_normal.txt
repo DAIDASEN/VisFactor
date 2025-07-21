@@ -1,0 +1,74 @@
+CF1_config = {
+    "num": 32,
+    "rows": 6,
+    "cols": 6,
+    "density": 0.2,
+    "model_0": "0,1-0,2; 0,2-0,3; 0,3-1,2; 1,2-2,2; 2,2-2,1; 2,1-1,0; 1,0-0,1",
+    "model_1": "0,0-0,1; 0,1-0,2; 0,2-0,3; 0,3-1,2; 1,2-2,1; 2,1-1,1; 1,1-0,0",
+    "model_2": "1,0-1,1; 1,1-0,2; 0,2-0,3; 0,3-1,3; 1,3-2,2; 2,2-2,1; 2,1-1,0",
+    "model_3": "2,0-1,1; 1,1-0,2; 0,2-1,3; 1,3-2,3; 2,3-2,2; 2,2-2,1; 2,1-2,0",
+    "model_4": "2,0-1,1; 1,1-0,1; 0,1-1,2; 1,2-1,3; 1,3-2,2; 2,2-2,1; 2,1-2,0",
+}
+CF2_config = {
+    "num": 80,
+    "rows": 3,
+    "cols": 3,
+    "density": 0.2,
+    "model": "0,2-0,1; 0,1-1,1; 1,1-2,0; 1,1-2,2"
+}
+CF3_config = {
+    "num": 64,
+    "rows": 5,
+    "cols": 5,
+    "min_steps": 4,
+    "max_steps": 4,
+}
+CS1_config = {
+    "num": 20,
+    "input_dir": "Collected_Figures",
+    "severity": 0.4
+}
+CS2_config = {
+    "num": 50,
+    "min_length": 3,
+    "max_length": 6,
+    "severity": 0.4
+}
+CS3_config = {
+    "num": 24,
+    "input_dir": "Collected_Figures",
+    "severity": 0.4
+}
+MA1_config = {
+    "num": 42,
+    "input_dir": "Collected_Figures",
+    "capacity": 21,
+}
+S1_config = {
+    "num": 20,
+    "min_vertex": 4,
+    "max_vertex": 8,
+}
+S2_config = {
+    "num": 42
+}
+SS3_config = {
+    "num": 40,
+    "rows": 7,
+    "cols": 8,
+    "blocked_ratio": 0.25,
+    "num_buildings": 10
+}
+VZ1_config = {
+    "num": 48,
+    "model_0": "0,1-0,3; 0,3-1,3; 1,3-1,4; 1,4-3,4; 3,4-3,3; 3,3-4,3; 4,3-4,1; 4,1-3,1; 3,1-3,0; 3,0-1,0; 1,0-1,1; 1,1-0,1",
+    "model_1": "0,1-0,3; 0,3-2,4; 2,4-4,3; 4,3-4,1; 4,1-2,0; 2,0-0,1",
+    "model_2": "0,0-0,5; 0,5-5,5; 5,5-5,0; 5,0-0,0",
+    "model_3": "4,0-4,4; 4,4-0,2; 0,2-4,0",
+}
+VZ2_config = {
+    "num": 20,
+    "n": 3,
+    "min_steps": 1,
+    "max_steps": 3,
+}
