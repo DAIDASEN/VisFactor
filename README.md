@@ -18,7 +18,7 @@ This repository contains the official implementation of **VisFactor**, a novel b
 
 ## 📈 Leaderboard
 
-![results_page-0001](C:\Users\31670\Downloads\results_page-0001.jpg)
+![results_page-0001](.\Leaderboard.jpg)
 
 ## 🚀 Quick Start
 
