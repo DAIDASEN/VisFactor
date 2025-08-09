@@ -39,3 +39,4 @@ typing_extensions
 validators
 xlsxwriter
 wordfreq
+shapely
