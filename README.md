@@ -1,50 +1,134 @@
-VisFactor
+# Human Cognitive Benchmarks Reveal Foundational Visual Gaps in MLLMs
 
-## 📊 Datasets, Models, and Evaluation Results
+[![arXiv](https://img.shields.io/badge/arXiv-2502.16435-b31b1b.svg)](https://arxiv.org/abs/2502.16435)
 
-### Evaluation Results
+## 👁️Overview
 
-**The performance numbers on our official multi-modal leaderboards can be downloaded from here!**
+This repository contains the official implementation of **VisFactor**, a novel benchmark derived from the Factor-Referenced Cognitive Test (FRCT) that digitizes 20 vision-centric subtests from established cognitive psychology assessments. Our work systematically investigates the gap between human visual cognition and state-of-the-art Multimodal Large Language Models (MLLMs).
 
-[**OpenVLM Leaderboard**](https://huggingface.co/spaces/opencompass/open_vlm_leaderboard): [**Download All DETAILED Results**](http://opencompass.openxlab.space/assets/OpenVLM.json).
+## 🎯 Key Features
 
-Check **Supported Benchmarks** Tab in [**VLMEvalKit Features**](https://aicarrier.feishu.cn/wiki/Qp7wwSzQ9iK1Y6kNUJVcr6zTnPe?table=tblsdEpLieDoCxtb) to view all supported image & video benchmarks (70+).
+- **Comprehensive Evaluation**: 4 core domains of human visual cognition
+  - **Visualization and Spatial Processing**: Mental rotation, spatial relations
+  - **Perceptual and Closure**: Figure-ground discrimination, pattern completion
+  - **Memory**: Visual working memory, recognition tasks
+  - **Reasoning**: Abstract visual reasoning, analogical thinking
+- **Extensive Model Coverage**: 20 frontier MLLMs from GPT, Gemini, Claude, LLaMA, Qwen, and SEED families
+- **Rigorous Assessment**: Based on well-established psychometric tests (FRCT)
 
-Check **Supported LMMs** Tab in [**VLMEvalKit Features**](https://aicarrier.feishu.cn/wiki/Qp7wwSzQ9iK1Y6kNUJVcr6zTnPe?table=tblsdEpLieDoCxtb) to view all supported LMMs, including commercial APIs, open-source models, and more (200+).
+## 📈 Leaderboard
 
-**Transformers Version Recommendation:**
+![results_page-0001](C:\Users\31670\Downloads\results_page-0001.jpg)
 
-Note that some VLMs may not be able to run under certain transformer versions, we recommend the following settings to evaluate each VLM:
+## 🚀 Quick Start
 
-- **Please use** `transformers==4.33.0` **for**: `Qwen series`, `Monkey series`, `InternLM-XComposer Series`, `mPLUG-Owl2`, `OpenFlamingo v2`, `IDEFICS series`, `VisualGLM`, `MMAlaya`, `ShareCaptioner`, `MiniGPT-4 series`, `InstructBLIP series`, `PandaGPT`, `VXVERSE`.
-- **Please use** `transformers==4.36.2` **for**: `Moondream1`.
-- **Please use** `transformers==4.37.0` **for**: `LLaVA series`, `ShareGPT4V series`, `TransCore-M`, `LLaVA (XTuner)`, `CogVLM Series`, `EMU2 Series`, `Yi-VL Series`, `MiniCPM-[V1/V2]`, `OmniLMM-12B`, `DeepSeek-VL series`, `InternVL series`, `Cambrian Series`, `VILA Series`, `Llama-3-MixSenseV1_1`, `Parrot-7B`, `PLLaVA Series`.
-- **Please use** `transformers==4.40.0` **for**: `IDEFICS2`, `Bunny-Llama3`, `MiniCPM-Llama3-V2.5`, `360VL-70B`, `Phi-3-Vision`, `WeMM`.
-- **Please use** `transformers==4.42.0` **for**: `AKI`.
-- **Please use** `transformers==4.44.0` **for**: `Moondream2`, `H2OVL series`.
-- **Please use** `transformers==4.45.0` **for**: `Aria`.
-- **Please use** `transformers==latest` **for**: `LLaVA-Next series`, `PaliGemma-3B`, `Chameleon series`, `Video-LLaVA-7B-HF`, `Ovis series`, `Mantis series`, `MiniCPM-V2.6`, `OmChat-v2.0-13B-sinlge-beta`, `Idefics-3`, `GLM-4v-9B`, `VideoChat2-HD`, `RBDash_72b`, `Llama-3.2 series`, `Kosmos series`.
+> **Note**: This evaluation framework is built on [VLMEvalKit](https://github.com/open-compass/VLMEvalKit/tree/main). For detailed information beyond this guide, please refer to their repository. We extend our sincere gratitude to the VLMEvalKit team for their excellent work.
 
-**Torchvision Version Recommendation:**
+### Installation
 
-Note that some VLMs may not be able to run under certain torchvision versions, we recommend the following settings to evaluate each VLM:
+```bash
+git clone https://github.com/CUHK-ARISE/VisFactor.git
+cd VisFactor
+pip install -r requirements.txt
+```
 
-- **Please use** `torchvision>=0.16` **for**: `Moondream series` and `Aria`
+### Preparation
 
-**Flash-attn Version Recommendation:**
+1. **Download the VisFactor dataset**
 
-Note that some VLMs may not be able to run under certain flash-attention versions, we recommend the following settings to evaluate each VLM:
+   ```bash
+   mkdir -p ~/LMUData
+   cd ~/LMUData
+   # Download files will be placed here
+   ```
 
-- **Please use** `pip install flash-attn --no-build-isolation` **for**: `Aria`
+   Place `VisFactor.tsv` and `VisFactor_CoT.tsv` in this directory.
 
-```python
-# Demo
-from vlmeval.config import supported_VLM
-model = supported_VLM['idefics_9b_instruct']()
-# Forward Single Image
-ret = model.generate(['assets/apple.jpg', 'What is in this image?'])
-print(ret)  # The image features a red apple with a leaf on it.
-# Forward Multiple Images
-ret = model.generate(['assets/apple.jpg', 'assets/apple.jpg', 'How many apples are there in the provided images? '])
-print(ret)  # There are two apples in the provided images.
+2. **Configure API credentials**
+
+   ```bash
+   cd VisFactor/
+   vim .env  # or use any text editor
+   ```
+
+   Example `.env` configuration:
+
+   ```
+   # OpenAI
+   OPENAI_API_KEY=your_openai_key
+   OPENAI_API_BASE=https://api.openai.com/v1
+   
+   # Google
+   GOOGLE_API_KEY=your_google_key
+   
+   # Other Services
+   STEPAI_API_KEY=your_stepai_key
+   REKA_API_KEY=your_reka_key
+   GLMV_API_KEY=your_glmv_key
+   SENSENOVA_API_KEY=your_sensenova_key
+   MOONSHOT_API_KEY=your_kimi_key
+   DOUBAO_VL_KEY=your_doubao_key
+   
+   # Hunyuan-Vision
+   HUNYUAN_SECRET_KEY=your_hunyuan_key
+   HUNYUAN_SECRET_ID=your_hunyuan_id
+   
+   # Deployment Services
+   CW_API_BASE=your_congwang_base
+   CW_API_KEY=your_congwang_key
+   LMDEPLOY_API_BASE=your_lmdeploy_base
+   ```
+
+### Evaluation
+
+#### Standard Evaluation
+
+```bash
+python3 run.py --model GeminiPro2-5 --verbose
+```
+
+#### Chain-of-Thought (CoT) Evaluation
+
+```bash
+python3 run.py --data VisFactor_CoT --model GeminiPro2-5 --verbose
+```
+
+### Command Arguments
+
+| Argument      | Type      | Default  | Description                                                  |
+| ------------- | --------- | -------- | ------------------------------------------------------------ |
+| `--model`     | list[str] | required | VLM names supported in VLMEvalKit (see `supported_VLM` in `vlmeval/config.py`) |
+| `--mode`      | str       | 'all'    | Evaluation mode: 'all' (inference + evaluation) or 'infer' (inference only) |
+| `--api-nproc` | int       | 4        | Number of threads for API requests                           |
+| `--work-dir`  | str       | '.'      | Directory to save evaluation results                         |
+| `--reuse`     | flag      | False    | Use previously generated results if available                |
+
+## ⚙️Generate testcases
+
+We also provide a script to automatically generate some test cases, including CF1-3, CS1-3, MA1, S1-2, SS3, VZ1-2.
+
+First, prepare some images:
+
+```bash
+mkdir visfactor/Collected_Figures
+```
+
+Place your images in this folder, then run the script to generate new questions:
+
+```bash
+cd visfactor
+python3 generate_images.py
+```
+
+## 📄 Citation
+
+If you find VisFactor useful in your research, please cite our paper:
+
+```bibtex
+@article{huang2025visfactor,
+  title={Visfactor: Benchmarking fundamental visual cognition in multimodal large language models},
+  author={Huang, Jen-Tse and Dai, Dasen and Huang, Jen-Yuan and Yuan, Youliang and Liu, Xiaoyuan and Wang, Wenxuan and Jiao, Wenxiang and He, Pinjia and Tu, Zhaopeng},
+  journal={arXiv preprint arXiv:2502.16435},
+  year={2025}
+}
 ```
