@@ -125,9 +125,9 @@ python3 generate_images.py
 If you find VisFactor useful in your research, please cite our paper:
 
 ```bibtex
-@article{huang2025visfactor,
-  title={Visfactor: Benchmarking fundamental visual cognition in multimodal large language models},
-  author={Huang, Jen-Tse and Dai, Dasen and Huang, Jen-Yuan and Yuan, Youliang and Liu, Xiaoyuan and Wang, Wenxuan and Jiao, Wenxiang and He, Pinjia and Tu, Zhaopeng},
+@article{huang202human,
+  title={Human Cognitive Benchmarks Reveal Foundational Visual Gaps in MLLMs},
+  author={Huang, Jen-Tse and Dai, Dasen and Huang, Jen-Yuan and Yuan, Youliang and Liu, Xiaoyuan and Wang, Wenxuan and Jiao, Wenxiang and He, Pinjia and Tu, Zhaopeng and Duan, Haodong},
   journal={arXiv preprint arXiv:2502.16435},
   year={2025}
 }
