@@ -27,7 +27,7 @@ This repository contains the official implementation of **VisFactor**, a novel b
 ### Installation
 
 ```bash
-git clone https://github.com/CUHK-ARISE/VisFactor.git
+git clone https://github.com/DAIDASEN/VisFactor.git
 cd VisFactor
 pip install -r requirements.txt
 ```
