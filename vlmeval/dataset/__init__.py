@@ -3,76 +3,57 @@ import warnings
 from .image_base import img_root_map, ImageBaseDataset
 from .image_caption import ImageCaptionDataset
 from .image_yorn import ImageYORNDataset
-from .image_mcq import (
-    ImageMCQDataset, MMMUDataset, CustomMCQDataset, MUIRDataset, GMAIMMBenchDataset, MMERealWorld, HRBenchDataset,
-    NaturalBenchDataset, WeMath, MMMUProDataset, VMCBenchDataset, MedXpertQA_MM_test, LEGO, VisuLogic, CVBench, TDBench,
-    MicroBench, OmniMedVQA, MSEarthMCQ, VLMBlind, SCAM, _3DSRBench, AffordanceDataset, OmniEarthMCQBench, XLRSBench,
-    TreeBench
-)
-from .image_mt import MMDUDataset
-from .image_vqa import (
-    ImageVQADataset, MathVision, OCRBench, MathVista, LLaVABench, VGRPBench, MMVet, MTVQADataset, TableVQABench,
-    CustomVQADataset, CRPE, MathVerse, OlympiadBench, SeePhys, QSpatial, VizWiz, MMNIAH, LogicVista, MME_CoT,
-    MMSci_Captioning, Physics_yale, TDBenchGrounding, WildDocBenchmark, OCR_Reasoning, PhyX, CountBenchQA,
-    ZEROBench, Omni3DBench, TallyQA, MMEReasoning, MMVMBench, BMMR, OCRBench_v2
-)
+from .image_mcq import ImageMCQDataset, CustomMCQDataset
+# from .image_mt import MMDUDataset  # Removed non-VisFactor datasets
+from .image_vqa import ImageVQADataset, CustomVQADataset
 
 from .image_ccocr import CCOCRDataset
-from .image_shortqa import ImageShortQADataset, PathVQA_VAL, PathVQA_TEST
+from .image_shortqa import ImageShortQADataset
 from .text_mcq import CustomTextMCQDataset, TextMCQDataset
 
-from .vcr import VCRDataset
-from .mmlongbench import MMLongBench
-from .dude import DUDE
-from .slidevqa import SlideVQA
-from .vl_rewardbench import VLRewardBench
-from .vlm2bench import VLM2Bench
-from .spatial457 import Spatial457
-from .charxiv import CharXiv
+# Removed imports for deleted benchmark datasets
+# from .vcr import VCRDataset
+# from .mmlongbench import MMLongBench  
+# from .dude import DUDE
+# from .slidevqa import SlideVQA
+# from .vl_rewardbench import VLRewardBench
+# from .vlm2bench import VLM2Bench
+# from .spatial457 import Spatial457
+# from .charxiv import CharXiv
 
-from .mmbench_video import MMBenchVideo
-from .videomme import VideoMME
+# Removed video dataset imports - all deleted
+# from .mmbench_video import MMBenchVideo
+# from .videomme import VideoMME
+# from .mvbench import MVBench, MVBench_MP4
+# from .tamperbench import MVTamperBench
+# from .miabench import MIABench
+# from .mlvu import MLVU, MLVU_MCQ, MLVU_OpenEnded
+# from .tempcompass import TempCompass, TempCompass_Captioning, TempCompass_MCQ, TempCompass_YorN
+# from .longvideobench import LongVideoBench
+# from .cgbench import CGBench_MCQ_Grounding_Mini, CGBench_OpenEnded_Mini, CGBench_MCQ_Grounding, CGBench_OpenEnded
+# from .CGAVCounting.cg_av_counting import CGAVCounting
+# from .megabench import MEGABench
+# from .moviechat1k import MovieChat1k
+# from .vdc import VDC
+# from .vcrbench import VCRBench
+# from .gobench import GOBenchDataset
+# from .sfebench import SFE
+# from .ost_bench import OSTDataset
+# from .worldsense import WorldSense  
+# from .qbench_video import QBench_Video, QBench_Video_MCQ, QBench_Video_VQA
+
+# Keep video base classes but remove specific benchmarks  
 from .video_holmes import Video_Holmes
-from .mvbench import MVBench, MVBench_MP4
-from .tamperbench import MVTamperBench
-from .miabench import MIABench
-from .mlvu import MLVU, MLVU_MCQ, MLVU_OpenEnded
-from .tempcompass import TempCompass, TempCompass_Captioning, TempCompass_MCQ, TempCompass_YorN
-from .longvideobench import LongVideoBench
 from .video_concat_dataset import ConcatVideoDataset
-from .mmgenbench import MMGenBench
-from .cgbench import CGBench_MCQ_Grounding_Mini, CGBench_OpenEnded_Mini, CGBench_MCQ_Grounding, CGBench_OpenEnded
-from .CGAVCounting.cg_av_counting import CGAVCounting
-
-from .megabench import MEGABench
-from .moviechat1k import MovieChat1k
 from .video_mmlu import Video_MMLU_CAP, Video_MMLU_QA
-from .vdc import VDC
-from .vcrbench import VCRBench
-from .gobench import GOBenchDataset
-from .sfebench import SFE
+
+# Keep VisFactor 
 from .visfactor import VisFactor
-from .ost_bench import OSTDataset
 
-from .worldsense import WorldSense
-from .qbench_video import QBench_Video, QBench_Video_MCQ, QBench_Video_VQA
-
-from .cmmmu import CMMMU
-from .emma import EMMADataset
-from .wildvision import WildVision
-from .mmmath import MMMath
-from .dynamath import Dynamath
-from .creation import CreationMMBenchDataset
-from .mmalignbench import MMAlignBench
+# Keep essential imports
 from .utils import *
 from .video_dataset_config import *
 from ..smp import *
-from .Omnidocbench.omnidocbench import OmniDocBench
-from .moat import MOAT
-from .GUI.screenspot import ScreenSpot
-from .GUI.screenspot_pro import ScreenSpot_Pro
-from .mmifeval import MMIFEval
-from .chartmimic import ChartMimic
 
 
 class ConcatDataset(ImageBaseDataset):
@@ -185,33 +166,16 @@ class ConcatDataset(ImageBaseDataset):
 # Add new supported dataset class here
 IMAGE_DATASET = [
     ImageCaptionDataset, ImageYORNDataset, ImageMCQDataset, ImageVQADataset,
-    MathVision, MMMUDataset, OCRBench, MathVista, LLaVABench, VGRPBench, MMVet,
-    MTVQADataset, TableVQABench, MMLongBench, VCRDataset, MMDUDataset, DUDE,
-    SlideVQA, MUIRDataset, CCOCRDataset, GMAIMMBenchDataset, MMERealWorld,
-    HRBenchDataset, CRPE, MathVerse, NaturalBenchDataset, MIABench,
-    OlympiadBench, SeePhys,WildVision, MMMath, QSpatial, Dynamath, MMGenBench, VizWiz,
-    MMNIAH, CMMMU, VLRewardBench, WeMath, LogicVista, MMMUProDataset,
-    CreationMMBenchDataset, ImageShortQADataset, MMAlignBench, OmniDocBench,
-    VLM2Bench, VMCBenchDataset, EMMADataset, MME_CoT, MOAT, MedXpertQA_MM_test,
-    LEGO, MMSci_Captioning, Physics_yale, ScreenSpot_Pro, ScreenSpot,
-    MMIFEval, Spatial457, VisuLogic, CVBench, PathVQA_VAL,
-    PathVQA_TEST, TDBench, TDBenchGrounding, MicroBench, CharXiv, OmniMedVQA,
-    WildDocBenchmark, MSEarthMCQ, OCR_Reasoning, PhyX, VLMBlind, CountBenchQA,
-    ZEROBench, SCAM, Omni3DBench, TallyQA, _3DSRBench, BMMR, AffordanceDataset,
-    MMEReasoning, GOBenchDataset, SFE, ChartMimic, MMVMBench, XLRSBench,
-    OmniEarthMCQBench, VisFactor, OSTDataset, OCRBench_v2, TreeBench
+    CCOCRDataset, ImageShortQADataset, 
+    CustomMCQDataset, CustomVQADataset,
+    VisFactor
 ]
 
 
 VIDEO_DATASET = [
-    MMBenchVideo, VideoMME, MVBench, MVBench_MP4, MVTamperBench,
-    LongVideoBench, WorldSense, VDC, MovieChat1k, MEGABench,
-    MLVU, MLVU_MCQ, MLVU_OpenEnded,
-    TempCompass, TempCompass_MCQ, TempCompass_Captioning, TempCompass_YorN,
-    CGBench_MCQ_Grounding_Mini, CGBench_OpenEnded_Mini, CGBench_MCQ_Grounding, CGBench_OpenEnded,
-    QBench_Video, QBench_Video_MCQ, QBench_Video_VQA,
-    Video_MMLU_CAP, Video_MMLU_QA,
-    Video_Holmes, VCRBench, CGAVCounting
+    # Keep only minimal video infrastructure - can be removed if not needed
+    ConcatVideoDataset,
+    Video_Holmes, Video_MMLU_CAP, Video_MMLU_QA
 ]
 
 TEXT_DATASET = [
